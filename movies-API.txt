@@ -1,0 +1,25 @@
+- lista svih filmova
+
+GET /api/v1/movies
+
+- podaci o određenom filmu
+
+GET /api/v1/movies/{movie_id}
+
+- dodavanje novog filma
+
+POST /api/v1/movies
+
+Request body: JSON koji opisuje novi film
+
+- izmena podataka o filmu
+
+PUT /api/v1/movies/{movie_id}
+PATCH /api/v1/movies/{movie_id} - nećemo ga koristiti
+
+Request body: JSON koji opisuje izmenjeni film
+
+
+- brisanje određenog filma
+
+DELETE /api/v1/movies/{movie_id}
