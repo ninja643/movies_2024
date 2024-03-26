@@ -1,69 +1,54 @@
 package rs.ac.ni.pmf.rwa.movies.controller.impl;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 import rs.ac.ni.pmf.rwa.movies.controller.MoviesController;
+import rs.ac.ni.pmf.rwa.movies.model.Movie;
 import rs.ac.ni.pmf.rwa.movies.model.MovieDTO;
-import rs.ac.ni.pmf.rwa.movies.shared.Genre;
+import rs.ac.ni.pmf.rwa.movies.model.MoviesMapper;
+import rs.ac.ni.pmf.rwa.movies.repository.MoviesListRepository;
+import rs.ac.ni.pmf.rwa.movies.repository.MoviesRepository;
 
 import java.util.List;
 
 @Slf4j
+@RequiredArgsConstructor
 @RestController
 public class MoviesControllerImpl implements MoviesController {
 
+    private final MoviesRepository moviesRepository = new MoviesListRepository();
+    private final MoviesMapper moviesMapper;
+
     @Override
     public List<MovieDTO> getMovies() {
-        return List.of(MovieDTO.builder()
-                        .id(1)
-                        .name("The Gentlemen")
-                        .genre(Genre.ACTION)
-                        .releaseYear(2024)
-                        .build(),
-                MovieDTO.builder()
-                        .id(2)
-                        .name("The Sting")
-                        .genre(Genre.ACTION)
-                        .releaseYear(1972)
-                        .build());
+        return moviesRepository.findAll()
+                .stream()
+                .map(moviesMapper::toDto)
+                .toList();
     }
 
     @Override
     public MovieDTO getMovie(int id) {
-        if (id == 1) {
-            return MovieDTO.builder()
-                    .id(1)
-                    .name("The Gentlemen")
-                    .genre(Genre.ACTION)
-                    .releaseYear(2024)
-                    .build();
-        }
-
-        if (id == 2) {
-            return MovieDTO.builder()
-                    .id(2)
-                    .name("The Sting")
-                    .genre(Genre.ACTION)
-                    .releaseYear(1972)
-                    .build();
-        }
-
-        throw new IllegalArgumentException("Movie with id: " + id + " does not exist");
+        return moviesRepository.findById(id)
+                .map(moviesMapper::toDto)
+                .orElseThrow(() -> new IllegalArgumentException("Movie with id: " + id + " does not exist"));
     }
 
     @Override
-    public void createMovie(MovieDTO movie) {
-        log.info("Creating a new movie: {}", movie);
-
+    public void createMovie(MovieDTO movieDTO) {
+        moviesRepository.save(moviesMapper.fromDto(movieDTO));
     }
 
     @Override
     public void deleteMovie(int id) {
-        log.info("Delete movie with id {}", id);
+        moviesRepository.deleteById(id);
     }
 
     @Override
-    public void updateMovie(int id, @RequestBody MovieDTO updated) {
-        log.info("Updating a movie with id {} with value {}", id, updated);
+    public void updateMovie(int id, MovieDTO updated) {
+        final Movie movie = moviesMapper.fromDto(updated);
+        movie.setId(id);
+        moviesRepository.save(movie);
     }
 }
