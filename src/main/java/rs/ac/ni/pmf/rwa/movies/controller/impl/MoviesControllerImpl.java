@@ -30,6 +30,11 @@ public class MoviesControllerImpl implements MoviesController {
         moviesRepository.identifyBean();
     }
 
+    /**
+     * Retrieves the list of movies.
+     *
+     * @return The list of MovieDTO objects representing the movies.
+     */
     @Override
     public List<MovieDTO> getMovies() {
         return moviesRepository.findAll()
@@ -38,6 +43,13 @@ public class MoviesControllerImpl implements MoviesController {
                 .toList();
     }
 
+    /**
+     * Retrieves a movie with the specified ID.
+     *
+     * @param id The ID of the movie to retrieve.
+     * @return The MovieDTO object representing the retrieved movie.
+     * @throws MovieNotFoundException If the movie with the specified ID is not found.
+     */
     @Override
     public MovieDTO getMovie(int id) {
         final Map<AppConstant, Object> parameters = Map.of(AppConstant.MOVIE_ID, id);

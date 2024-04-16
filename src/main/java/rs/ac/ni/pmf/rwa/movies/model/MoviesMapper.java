@@ -5,6 +5,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class MoviesMapper {
 
+    /**
+     * Converts a MovieEntity object to a MovieDTO object.
+     *
+     * @param movie The MovieEntity object to be converted.
+     * @return The converted MovieDTO object.
+     */
     public MovieDTO toDto(final MovieEntity movie) {
         return MovieDTO.builder()
                 .id(movie.getId())
@@ -15,7 +21,14 @@ public class MoviesMapper {
                 .build();
     }
 
+    /**
+     * Converts a MovieDTO object to a MovieEntity object.
+     *
+     * @param movieDTO The MovieDTO object to be converted.
+     * @return The converted MovieEntity object.
+     */
     public MovieEntity fromDto(final MovieDTO movieDTO) {
+
         return MovieEntity.builder()
                 .id(movieDTO.getId())
                 .name(movieDTO.getName())

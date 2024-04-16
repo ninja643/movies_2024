@@ -7,10 +7,13 @@ import rs.ac.ni.pmf.rwa.movies.shared.Genre;
 
 import java.util.Objects;
 
+/**
+ * The MovieEntity class represents a movie entity in the application.
+ * It is used to store and retrieve information about movies.
+ */
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,6 +32,12 @@ public class MovieEntity {
     @Enumerated(EnumType.STRING)
     Genre genre;
 
+    /**
+     * Checks if the current movie entity is equal to the specified object.
+     *
+     * @param o the object to compare against
+     * @return true if the current movie entity is equal to the specified object, false otherwise
+     */
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
