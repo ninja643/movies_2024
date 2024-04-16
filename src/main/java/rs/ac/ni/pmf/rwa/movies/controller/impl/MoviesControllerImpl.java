@@ -1,29 +1,34 @@
 package rs.ac.ni.pmf.rwa.movies.controller.impl;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 import rs.ac.ni.pmf.rwa.movies.controller.MoviesController;
 import rs.ac.ni.pmf.rwa.movies.exception.MovieNotFoundException;
-import rs.ac.ni.pmf.rwa.movies.model.Movie;
+import rs.ac.ni.pmf.rwa.movies.model.MovieEntity;
 import rs.ac.ni.pmf.rwa.movies.model.MovieDTO;
 import rs.ac.ni.pmf.rwa.movies.model.MoviesMapper;
-import rs.ac.ni.pmf.rwa.movies.repository.MoviesListRepository;
 import rs.ac.ni.pmf.rwa.movies.repository.MoviesRepository;
 import rs.ac.ni.pmf.rwa.movies.shared.AppConstant;
 
-import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@RequiredArgsConstructor
 @RestController
 public class MoviesControllerImpl implements MoviesController {
 
-    private final MoviesRepository moviesRepository = new MoviesListRepository();
+    private final MoviesRepository moviesRepository;
+
     private final MoviesMapper moviesMapper;
+
+    public MoviesControllerImpl(
+            MoviesRepository moviesRepository,
+            MoviesMapper moviesMapper) {
+        this.moviesRepository = moviesRepository;
+        this.moviesMapper = moviesMapper;
+
+        moviesRepository.identifyBean();
+    }
 
     @Override
     public List<MovieDTO> getMovies() {
@@ -47,9 +52,6 @@ public class MoviesControllerImpl implements MoviesController {
         final Map<AppConstant, Object> parameters = Map.of(
                 AppConstant.MOVIE_NAME, name,
                 AppConstant.MOVIE_ID, "None");
-//                new EnumMap<>(AppConstant.class);
-//        parameters.put(AppConstant.MOVIE_NAME, name);
-//        parameters.put(AppConstant.MOVIE_ID, "None");
 
         throw new MovieNotFoundException(parameters);
     }
@@ -66,7 +68,7 @@ public class MoviesControllerImpl implements MoviesController {
 
     @Override
     public void updateMovie(int id, MovieDTO updated) {
-        final Movie movie = moviesMapper.fromDto(updated);
+        final MovieEntity movie = moviesMapper.fromDto(updated);
         movie.setId(id);
         moviesRepository.save(movie);
     }

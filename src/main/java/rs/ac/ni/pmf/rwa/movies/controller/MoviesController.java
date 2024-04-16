@@ -32,13 +32,13 @@ public interface MoviesController {
             @ApiResponse(responseCode = "200", description = "OK - the movie was found"),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Movie not found. This happens if the non-existent id is given as a parameter",
+                    description = "MovieEntity not found. This happens if the non-existent id is given as a parameter",
                     content = @Content(
                             mediaType = "application-json",
                             contentSchema = @Schema(implementation = ErrorDto.class),
                             examples = @ExampleObject(
                                     name = "Movie1",
-                                    value = "{\"id\": 1, \"title\": \"Movie Title\"}"
+                                    value = "{\"id\": 1, \"title\": \"MovieEntity Title\"}"
                             )
                     )
             )

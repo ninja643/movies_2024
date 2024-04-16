@@ -1,6 +1,6 @@
 package rs.ac.ni.pmf.rwa.movies.repository;
 
-import rs.ac.ni.pmf.rwa.movies.model.Movie;
+import rs.ac.ni.pmf.rwa.movies.model.MovieEntity;
 import rs.ac.ni.pmf.rwa.movies.shared.Genre;
 
 import java.util.ArrayList;
@@ -11,17 +11,17 @@ public class MoviesListRepository implements MoviesRepository {
 
     private static int lastId;
 
-    private static final List<Movie> movies = new ArrayList<>();
+    private static final List<MovieEntity> movies = new ArrayList<>();
 
     static {
-        movies.add(Movie.builder()
+        movies.add(MovieEntity.builder()
                 .id(1)
                 .name("The Gentlemen")
                 .genre(Genre.ACTION)
                 .releaseYear(2024)
                 .build());
 
-        movies.add(Movie.builder()
+        movies.add(MovieEntity.builder()
                 .id(2)
                 .name("The Sting")
                 .genre(Genre.ACTION)
@@ -32,25 +32,25 @@ public class MoviesListRepository implements MoviesRepository {
     }
 
     @Override
-    public List<Movie> findAll() {
+    public List<MovieEntity> findAll() {
         return movies;
     }
 
     @Override
-    public Optional<Movie> findById(int id) {
+    public Optional<MovieEntity> findById(int id) {
         return movies.stream()
                 .filter(movie -> movie.getId() == id)
                 .findFirst();
     }
 
     @Override
-    public Movie save(Movie movie) {
-        final Optional<Movie> optionalMovie = movies.stream()
+    public MovieEntity save(MovieEntity movie) {
+        final Optional<MovieEntity> optionalMovie = movies.stream()
                 .filter(m -> m.getId() == movie.getId())
                 .findFirst();
 
         if (optionalMovie.isPresent()) {
-            final Movie existingMovie = optionalMovie.get();
+            final MovieEntity existingMovie = optionalMovie.get();
             movies.remove(existingMovie);
             movies.add(movie);
         } else {
@@ -65,5 +65,10 @@ public class MoviesListRepository implements MoviesRepository {
     @Override
     public void deleteById(int id) {
         movies.removeIf(movie -> movie.getId() == id);
+    }
+
+    @Override
+    public void identifyBean() {
+        System.out.println("Using the List Repo bean");
     }
 }

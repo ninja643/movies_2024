@@ -22,7 +22,7 @@ public class ErrorController {
     public ErrorDto handleMovieNotFound(final MovieNotFoundException e) {
         final Map<AppConstant, Object> parameters = e.getParameters();
         // TODO: This uses sets and the order is not always the same! Fix it!
-        final String message = "Movie with parameters ("
+        final String message = "MovieEntity with parameters ("
                 + parameters.keySet().stream().map(Enum::name).collect(Collectors.joining(", "))
                 + ") -> ("
                 + parameters.values().stream().map(Objects::toString).collect(Collectors.joining(", "))

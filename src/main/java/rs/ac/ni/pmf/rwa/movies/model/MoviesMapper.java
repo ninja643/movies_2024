@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MoviesMapper {
 
-    public MovieDTO toDto(final Movie movie) {
+    public MovieDTO toDto(final MovieEntity movie) {
         return MovieDTO.builder()
                 .id(movie.getId())
                 .name(movie.getName())
@@ -15,8 +15,8 @@ public class MoviesMapper {
                 .build();
     }
 
-    public Movie fromDto(final MovieDTO movieDTO) {
-        return Movie.builder()
+    public MovieEntity fromDto(final MovieDTO movieDTO) {
+        return MovieEntity.builder()
                 .id(movieDTO.getId())
                 .name(movieDTO.getName())
                 .genre(movieDTO.getGenre())
