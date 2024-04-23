@@ -26,8 +26,6 @@ public class MoviesControllerImpl implements MoviesController {
             MoviesMapper moviesMapper) {
         this.moviesRepository = moviesRepository;
         this.moviesMapper = moviesMapper;
-
-        moviesRepository.identifyBean();
     }
 
     /**
@@ -83,5 +81,12 @@ public class MoviesControllerImpl implements MoviesController {
         final MovieEntity movie = moviesMapper.fromDto(updated);
         movie.setId(id);
         moviesRepository.save(movie);
+    }
+
+    @Override
+    public List<MovieDTO> getMoviesByReleaseYear(int year) {
+        return moviesRepository.findAllByReleaseYear(year).stream()
+                .map(moviesMapper::toDto)
+                .toList();
     }
 }

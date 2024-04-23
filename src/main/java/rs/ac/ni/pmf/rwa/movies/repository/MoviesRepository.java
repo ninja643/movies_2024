@@ -1,17 +1,13 @@
 package rs.ac.ni.pmf.rwa.movies.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import rs.ac.ni.pmf.rwa.movies.model.MovieEntity;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface MoviesRepository {
-    List<MovieEntity> findAll();
-    Optional<MovieEntity> findById(int id);
+public interface MoviesRepository extends JpaRepository<MovieEntity, Integer> {
 
-    MovieEntity save(MovieEntity movie);
-
-    void deleteById(int id);
-
-    void identifyBean();
+    List<MovieEntity> findAllByReleaseYear(int year);
 }

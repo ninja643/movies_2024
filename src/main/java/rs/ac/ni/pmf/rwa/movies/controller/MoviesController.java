@@ -49,7 +49,7 @@ public interface MoviesController {
     /*
         Method is for demonstration purposes only! It should not be the part of this API.
      */
-    @GetMapping("/find/{name}")
+    @GetMapping("/find/title/{name}")
     MovieDTO getMovieByName(final String name);
 
     @PostMapping("")
@@ -60,4 +60,7 @@ public interface MoviesController {
 
     @PutMapping("/{movie_id}")
     void updateMovie(@PathVariable("movie_id") int id, @RequestBody MovieDTO updated);
+
+    @GetMapping("/find/year/{year}")
+    List<MovieDTO> getMoviesByReleaseYear(@PathVariable("year") int year);
 }
