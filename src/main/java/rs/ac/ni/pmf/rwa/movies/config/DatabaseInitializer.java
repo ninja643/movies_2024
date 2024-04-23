@@ -17,11 +17,11 @@ public class DatabaseInitializer implements InitializingBean {
     private final MoviesRepository moviesRepository;
 
     private static final List<MovieEntity> movies = List.of(
-            MovieEntity.builder().name("711 Ocean Drive").genre(Genre.COMEDY).build(),
-            MovieEntity.builder().name("Abbott and Costello in the Foreign Legion").genre(Genre.COMEDY).build(),
-            MovieEntity.builder().name("Across the Badlands").genre(Genre.COMEDY).build(),
-            MovieEntity.builder().name("The Admiral Was a Lady").genre(Genre.COMEDY).build(),
-            MovieEntity.builder().name("All About Eve").genre(Genre.COMEDY).build()
+            MovieEntity.builder().name("711 Ocean Drive").releaseYear(1999).genre(Genre.COMEDY).build(),
+            MovieEntity.builder().name("Abbott and Costello in the Foreign Legion").releaseYear(1999).genre(Genre.COMEDY).build(),
+            MovieEntity.builder().name("Across the Badlands").releaseYear(2010).genre(Genre.COMEDY).build(),
+            MovieEntity.builder().name("The Admiral Was a Lady").releaseYear(2022).genre(Genre.COMEDY).build(),
+            MovieEntity.builder().name("All About Eve").releaseYear(1999).genre(Genre.COMEDY).build()
     );
 
     @Override

@@ -10,6 +10,7 @@ import rs.ac.ni.pmf.rwa.movies.model.MoviesMapper;
 import rs.ac.ni.pmf.rwa.movies.repository.MoviesRepository;
 import rs.ac.ni.pmf.rwa.movies.shared.AppConstant;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -85,7 +86,12 @@ public class MoviesControllerImpl implements MoviesController {
 
     @Override
     public List<MovieDTO> getMoviesByReleaseYear(int year) {
-        return moviesRepository.findAllByReleaseYear(year).stream()
+//        return moviesRepository.findAllByReleaseYear(year).stream()
+        final Calendar calendar = Calendar.getInstance();
+        final int currentYear = calendar.get(Calendar.YEAR);
+        log.info("Getting all movies with release year between {} and {}", year, currentYear);
+
+        return moviesRepository.findAllByReleaseYearBetween(year, currentYear).stream()
                 .map(moviesMapper::toDto)
                 .toList();
     }
