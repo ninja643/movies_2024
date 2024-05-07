@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.ni.pmf.rwa.movies.exception.ErrorDto;
-import rs.ac.ni.pmf.rwa.movies.model.MovieDTO;
+import rs.ac.ni.pmf.rwa.movies.model.dto.MovieDTO;
 
 import java.util.List;
 

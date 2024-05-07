@@ -1,4 +1,4 @@
-package rs.ac.ni.pmf.rwa.movies.model;
+package rs.ac.ni.pmf.rwa.movies.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

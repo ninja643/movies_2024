@@ -3,9 +3,9 @@ package rs.ac.ni.pmf.rwa.movies.controller.impl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import rs.ac.ni.pmf.rwa.movies.exception.MovieNotFoundException;
-import rs.ac.ni.pmf.rwa.movies.model.MovieDTO;
-import rs.ac.ni.pmf.rwa.movies.model.MovieEntity;
-import rs.ac.ni.pmf.rwa.movies.model.MoviesMapper;
+import rs.ac.ni.pmf.rwa.movies.model.dto.MovieDTO;
+import rs.ac.ni.pmf.rwa.movies.model.entity.MovieEntity;
+import rs.ac.ni.pmf.rwa.movies.model.mapper.MoviesMapper;
 import rs.ac.ni.pmf.rwa.movies.repository.MoviesRepository;
 import rs.ac.ni.pmf.rwa.movies.shared.AppConstant;
 
