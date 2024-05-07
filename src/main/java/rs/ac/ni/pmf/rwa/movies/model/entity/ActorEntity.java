@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import rs.ac.ni.pmf.rwa.movies.shared.Gender;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -27,5 +29,7 @@ public class ActorEntity {
     Gender gender;
     String nationality;
 
-
+    // TODO: This needs to be ManyToMany relation
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "actor", fetch = FetchType.EAGER)
+    List<MovieEntity> movies;
 }

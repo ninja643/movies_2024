@@ -2,6 +2,7 @@ package rs.ac.ni.pmf.rwa.movies.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import rs.ac.ni.pmf.rwa.movies.model.entity.MovieEntity;
+import rs.ac.ni.pmf.rwa.movies.shared.Genre;
 
 import java.util.List;
 

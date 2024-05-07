@@ -13,5 +13,5 @@ public class ActorDTO {
     String surname;
     Gender gender;
     String nationality;
-
+    String movies;
 }

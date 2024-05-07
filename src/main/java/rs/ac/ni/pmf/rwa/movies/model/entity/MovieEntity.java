@@ -32,6 +32,9 @@ public class MovieEntity {
     @Enumerated(EnumType.STRING)
     Genre genre;
 
+    @ManyToOne
+    ActorEntity actor;
+
     /**
      * Checks if the current movie entity is equal to the specified object.
      *

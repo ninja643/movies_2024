@@ -24,7 +24,8 @@ public class ActorsService {
     }
 
     public List<ActorDTO> getAll(){
-        return  actorsRepository.findAll().stream().map(mapper::toDto).toList();
+        final List<ActorEntity> actors = actorsRepository.findAll();
+        return  actors.stream().map(mapper::toDto).toList();
     }
 
 

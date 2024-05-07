@@ -3,6 +3,9 @@ package rs.ac.ni.pmf.rwa.movies.model.mapper;
 import org.springframework.stereotype.Component;
 import rs.ac.ni.pmf.rwa.movies.model.dto.ActorDTO;
 import rs.ac.ni.pmf.rwa.movies.model.entity.ActorEntity;
+import rs.ac.ni.pmf.rwa.movies.model.entity.MovieEntity;
+
+import java.util.stream.Collectors;
 
 
 @Component
@@ -15,6 +18,9 @@ public class ActorMapper {
                 .surname(actorEntity.getSurname())
                 .gender(actorEntity.getGender())
                 .nationality(actorEntity.getNationality())
+                .movies(actorEntity.getMovies() != null
+                        ? actorEntity.getMovies().stream().map(MovieEntity::getName).collect(Collectors.joining(", "))
+                        : null)
                 .build();
     }
 
