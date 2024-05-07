@@ -1,6 +1,8 @@
-package rs.ac.ni.pmf.rwa.movies.model;
+package rs.ac.ni.pmf.rwa.movies.model.mapper;
 
 import org.springframework.stereotype.Component;
+import rs.ac.ni.pmf.rwa.movies.model.dto.MovieDTO;
+import rs.ac.ni.pmf.rwa.movies.model.entity.MovieEntity;
 
 @Component
 public class MoviesMapper {
