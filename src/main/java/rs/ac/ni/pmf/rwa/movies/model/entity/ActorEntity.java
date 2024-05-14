@@ -31,14 +31,9 @@ public class ActorEntity {
     Gender gender;
     String nationality;
 
-    // TODO: This needs to be ManyToMany relation
     @Builder.Default
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(
-            joinColumns = {@JoinColumn(name = "actor_id")},
-            inverseJoinColumns = {@JoinColumn(name = "movie_id")}
-    )
-    List<MovieEntity> movies = new ArrayList<>();
+    @OneToMany(mappedBy = "actor", cascade = CascadeType.ALL)
+    List<MovieActorEntity> movies = new ArrayList<>();
 
     @Builder.Default
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "leadingRole", fetch = FetchType.EAGER)

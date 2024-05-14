@@ -6,6 +6,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 import rs.ac.ni.pmf.rwa.movies.model.entity.ActorEntity;
 import rs.ac.ni.pmf.rwa.movies.model.entity.BudgetEntity;
+import rs.ac.ni.pmf.rwa.movies.model.entity.MovieActorEntity;
 import rs.ac.ni.pmf.rwa.movies.model.entity.MovieEntity;
 import rs.ac.ni.pmf.rwa.movies.repository.ActorsRepository;
 import rs.ac.ni.pmf.rwa.movies.repository.BudgetRepository;
@@ -83,29 +84,55 @@ public class DatabaseInitializer implements InitializingBean {
 //        moviesRepository.save(MOVIE_2);
 
 
+
+
 //        MOVIE_1.setActor(ACTOR_2);
 //        MOVIE_2.setActor(ACTOR_2);
 
-        ACTOR_2.getMovies().add(MOVIE_1);
-        ACTOR_2.getMovies().add(MOVIE_2);
+//        ACTOR_2.getMovies().add(MOVIE_1);
+//        ACTOR_2.getMovies().add(MOVIE_2);
 
-//        ACTOR_1.addMainRoles(MOVIE_1);
+        ACTOR_1.addMainRoles(MOVIE_1);
 //        ACTOR_2.addMainRoles(MOVIE_2);
 
         actorsRepository.save(ACTOR_1);
         actorsRepository.save(ACTOR_2);
 
         budgetRepository.save(BUDGET1);
-        budgetRepository.save(BUDGET2);
+//        budgetRepository.save(BUDGET2);
 
         MOVIE_1.setMovieBudget(BUDGET1);
-        MOVIE_2.setMovieBudget(BUDGET2);
+//        MOVIE_2.setMovieBudget(BUDGET2);
 
         MOVIE_1.setLeadingRole(ACTOR_1);
-        MOVIE_2.setLeadingRole(ACTOR_2);
+//        MOVIE_2.setLeadingRole(ACTOR_2);
+
+
+        MovieActorEntity movieActorEntity1 = new MovieActorEntity();
+        MovieActorEntity.MovieActorPK movieActorPK1 = new MovieActorEntity.MovieActorPK();
+        movieActorPK1.setMovieId(MOVIE_1.getId());
+        movieActorPK1.setActorId(ACTOR_1.getId());
+
+        movieActorEntity1.setId(movieActorPK1);
+        movieActorEntity1.setMovie(MOVIE_1);
+        movieActorEntity1.setActor(ACTOR_1);
+        movieActorEntity1.setSalary(1_000_000.0);
+        MOVIE_1.getActors().add(movieActorEntity1);
+
+        MovieActorEntity movieActorEntity2 = new MovieActorEntity();
+        MovieActorEntity.MovieActorPK movieActorPK2 = new MovieActorEntity.MovieActorPK();
+        movieActorPK2.setMovieId(MOVIE_1.getId());
+        movieActorPK2.setActorId(ACTOR_2.getId());
+
+        movieActorEntity2.setId(movieActorPK2);
+        movieActorEntity2.setMovie(MOVIE_1);
+        movieActorEntity2.setActor(ACTOR_2);
+        movieActorEntity2.setSalary(700_000.0);
+        MOVIE_1.getActors().add(movieActorEntity2);
+
 
         moviesRepository.save(MOVIE_1);
-        moviesRepository.save(MOVIE_2);
+//        moviesRepository.save(MOVIE_2);
 
 //        log.info("Movies in database: {}", moviesRepository.count());
 //        log.info("Actors in database: {}", actorsRepository.count());

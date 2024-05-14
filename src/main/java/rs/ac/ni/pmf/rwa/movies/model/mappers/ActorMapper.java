@@ -18,9 +18,9 @@ public class ActorMapper {
                 .surname(actorEntity.getSurname())
                 .gender(actorEntity.getGender())
                 .nationality(actorEntity.getNationality())
-                .movies(actorEntity.getMovies() != null
-                        ? actorEntity.getMovies().stream().map(MovieEntity::getName).collect(Collectors.joining(", "))
-                        : null)
+//                .movies(actorEntity.getMovies() != null
+//                        ? actorEntity.getMovies().stream().map(MovieEntity::getName).collect(Collectors.joining(", "))
+//                        : null)
                 .build();
     }
 

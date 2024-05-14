@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 import rs.ac.ni.pmf.rwa.movies.shared.Genre;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,8 +34,10 @@ public class MovieEntity {
     @Enumerated(EnumType.STRING)
     Genre genre;
 
-    @ManyToMany(mappedBy = "movies")
-    List<ActorEntity> actors;
+    @Builder.Default
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    List<MovieActorEntity> actors = new ArrayList<>();
+
 
     @ManyToOne
     @JoinColumn(name="leading_role_id")
