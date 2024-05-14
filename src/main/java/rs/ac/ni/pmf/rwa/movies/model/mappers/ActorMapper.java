@@ -1,4 +1,4 @@
-package rs.ac.ni.pmf.rwa.movies.model.mapper;
+package rs.ac.ni.pmf.rwa.movies.model.mappers;
 
 import org.springframework.stereotype.Component;
 import rs.ac.ni.pmf.rwa.movies.model.dto.ActorDTO;

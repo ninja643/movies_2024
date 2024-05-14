@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 import rs.ac.ni.pmf.rwa.movies.shared.Genre;
 
+
 import java.util.Objects;
 
 /**
@@ -34,6 +35,13 @@ public class MovieEntity {
 
     @ManyToOne
     ActorEntity actor;
+    @ManyToOne
+    @JoinColumn(name="leadingRole_id")
+    ActorEntity leadingRole;
+    @OneToOne
+    BudgetEntity movieBudget;
+
+
 
     /**
      * Checks if the current movie entity is equal to the specified object.

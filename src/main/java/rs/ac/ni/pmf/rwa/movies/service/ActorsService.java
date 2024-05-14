@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import rs.ac.ni.pmf.rwa.movies.exception.ActorNotFoundException;
 import rs.ac.ni.pmf.rwa.movies.model.dto.ActorDTO;
 import rs.ac.ni.pmf.rwa.movies.model.entity.ActorEntity;
-import rs.ac.ni.pmf.rwa.movies.model.mapper.ActorMapper;
+import rs.ac.ni.pmf.rwa.movies.model.mappers.ActorMapper;
 import rs.ac.ni.pmf.rwa.movies.repository.ActorsRepository;
 
 import java.util.List;
@@ -50,5 +50,7 @@ public class ActorsService {
     actorEntity.setId(id);
     actorsRepository.save(actorEntity);
     }
+
+
 
 }

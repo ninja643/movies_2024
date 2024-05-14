@@ -6,7 +6,7 @@ import rs.ac.ni.pmf.rwa.movies.controller.MoviesController;
 import rs.ac.ni.pmf.rwa.movies.exception.MovieNotFoundException;
 import rs.ac.ni.pmf.rwa.movies.model.entity.MovieEntity;
 import rs.ac.ni.pmf.rwa.movies.model.dto.MovieDTO;
-import rs.ac.ni.pmf.rwa.movies.model.mapper.MoviesMapper;
+import rs.ac.ni.pmf.rwa.movies.model.mappers.MoviesMapper;
 import rs.ac.ni.pmf.rwa.movies.repository.MoviesRepository;
 import rs.ac.ni.pmf.rwa.movies.shared.AppConstant;
 
