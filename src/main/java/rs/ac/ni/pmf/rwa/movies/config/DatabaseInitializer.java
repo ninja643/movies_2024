@@ -95,11 +95,11 @@ public class DatabaseInitializer implements InitializingBean {
         actorsRepository.save(ACTOR_1);
         actorsRepository.save(ACTOR_2);
 
-//        budgetRepository.save(BUDGET1);
-//        budgetRepository.save(BUDGET2);
-//
-//        MOVIE_1.setMovieBudget(BUDGET1);
-//        MOVIE_2.setMovieBudget(BUDGET2);
+        budgetRepository.save(BUDGET1);
+        budgetRepository.save(BUDGET2);
+
+        MOVIE_1.setMovieBudget(BUDGET1);
+        MOVIE_2.setMovieBudget(BUDGET2);
 
         MOVIE_1.setLeadingRole(ACTOR_1);
         MOVIE_2.setLeadingRole(ACTOR_2);
