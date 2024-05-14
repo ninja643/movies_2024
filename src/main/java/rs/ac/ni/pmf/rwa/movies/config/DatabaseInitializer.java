@@ -1,6 +1,5 @@
 package rs.ac.ni.pmf.rwa.movies.config;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -16,7 +15,6 @@ import rs.ac.ni.pmf.rwa.movies.shared.Genre;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -43,7 +41,6 @@ public class DatabaseInitializer implements InitializingBean {
             MovieEntity.builder().name("The Admiral Was a Lady").releaseYear(2022).genre(Genre.COMEDY).build(),
             MovieEntity.builder().name("All About Eve").releaseYear(1999).genre(Genre.COMEDY).build()
     );
-
 
 
     public static final ActorEntity ACTOR_1 = ActorEntity.builder()
@@ -74,9 +71,8 @@ public class DatabaseInitializer implements InitializingBean {
             .build();
 
 
-
     @Override
-   // @Transactional
+    // @Transactional
     public void afterPropertiesSet() throws Exception {
         log.info("Filling database with initial data");
 
@@ -87,8 +83,8 @@ public class DatabaseInitializer implements InitializingBean {
 //        moviesRepository.save(MOVIE_2);
 
 
-        MOVIE_1.setActor(ACTOR_2);
-        MOVIE_2.setActor(ACTOR_2);
+//        MOVIE_1.setActor(ACTOR_2);
+//        MOVIE_2.setActor(ACTOR_2);
 
         ACTOR_2.getMovies().add(MOVIE_1);
         ACTOR_2.getMovies().add(MOVIE_2);
@@ -99,11 +95,11 @@ public class DatabaseInitializer implements InitializingBean {
         actorsRepository.save(ACTOR_1);
         actorsRepository.save(ACTOR_2);
 
-        budgetRepository.save(BUDGET1);
-        budgetRepository.save(BUDGET2);
-
-        MOVIE_1.setMovieBudget(BUDGET1);
-        MOVIE_2.setMovieBudget(BUDGET2);
+//        budgetRepository.save(BUDGET1);
+//        budgetRepository.save(BUDGET2);
+//
+//        MOVIE_1.setMovieBudget(BUDGET1);
+//        MOVIE_2.setMovieBudget(BUDGET2);
 
         MOVIE_1.setLeadingRole(ACTOR_1);
         MOVIE_2.setLeadingRole(ACTOR_2);

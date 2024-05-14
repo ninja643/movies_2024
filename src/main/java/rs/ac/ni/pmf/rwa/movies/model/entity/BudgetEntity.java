@@ -14,16 +14,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name ="budget")
+@Table(name = "budget")
 public class BudgetEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="budget_id")
+    @Column(name = "budget_id")
     Integer budgetId;
 
     Double budget;
+
     @OneToOne(mappedBy = "movieBudget", cascade = CascadeType.ALL)
-     MovieEntity movieEntity;
+    MovieEntity movieEntity;
 
 
 }
