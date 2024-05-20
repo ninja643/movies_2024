@@ -93,19 +93,19 @@ public class DatabaseInitializer implements InitializingBean {
 //        ACTOR_2.getMovies().add(MOVIE_2);
 
         ACTOR_1.addMainRoles(MOVIE_1);
-//        ACTOR_2.addMainRoles(MOVIE_2);
+        ACTOR_2.addMainRoles(MOVIE_2);
 
         actorsRepository.save(ACTOR_1);
         actorsRepository.save(ACTOR_2);
 
         budgetRepository.save(BUDGET1);
-//        budgetRepository.save(BUDGET2);
+        budgetRepository.save(BUDGET2);
 
         MOVIE_1.setMovieBudget(BUDGET1);
-//        MOVIE_2.setMovieBudget(BUDGET2);
+        MOVIE_2.setMovieBudget(BUDGET2);
 
         MOVIE_1.setLeadingRole(ACTOR_1);
-//        MOVIE_2.setLeadingRole(ACTOR_2);
+        MOVIE_2.setLeadingRole(ACTOR_2);
 
 
         MovieActorEntity movieActorEntity1 = new MovieActorEntity();
@@ -132,7 +132,7 @@ public class DatabaseInitializer implements InitializingBean {
 
 
         moviesRepository.save(MOVIE_1);
-//        moviesRepository.save(MOVIE_2);
+        moviesRepository.save(MOVIE_2);
 
 //        log.info("Movies in database: {}", moviesRepository.count());
 //        log.info("Actors in database: {}", actorsRepository.count());

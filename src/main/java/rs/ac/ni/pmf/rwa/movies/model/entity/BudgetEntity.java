@@ -15,7 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "budget")
-public class BudgetEntity {
+public class
+BudgetEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "budget_id")
@@ -23,7 +24,7 @@ public class BudgetEntity {
 
     Double budget;
 
-    @OneToOne(mappedBy = "movieBudget", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "movieBudget")
     MovieEntity movieEntity;
 
 

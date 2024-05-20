@@ -36,7 +36,7 @@ public class ActorEntity {
     List<MovieActorEntity> movies = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "leadingRole", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "leadingRole")
     List<MovieEntity> leadingRoles = new ArrayList<>();
 
     public void addMainRoles(MovieEntity... movieEntities) {

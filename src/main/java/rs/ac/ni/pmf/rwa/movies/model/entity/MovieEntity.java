@@ -43,7 +43,7 @@ public class MovieEntity {
     @JoinColumn(name="leading_role_id")
     ActorEntity leadingRole;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     BudgetEntity movieBudget;
 
 
