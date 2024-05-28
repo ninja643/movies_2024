@@ -3,19 +3,14 @@ package rs.ac.ni.pmf.rwa.movies.config;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import rs.ac.ni.pmf.rwa.movies.model.entity.ActorEntity;
-import rs.ac.ni.pmf.rwa.movies.model.entity.BudgetEntity;
-import rs.ac.ni.pmf.rwa.movies.model.entity.MovieActorEntity;
-import rs.ac.ni.pmf.rwa.movies.model.entity.MovieEntity;
-import rs.ac.ni.pmf.rwa.movies.repository.ActorsRepository;
-import rs.ac.ni.pmf.rwa.movies.repository.BudgetRepository;
-import rs.ac.ni.pmf.rwa.movies.repository.MoviesRepository;
+import rs.ac.ni.pmf.rwa.movies.model.entity.*;
+import rs.ac.ni.pmf.rwa.movies.repository.*;
 import rs.ac.ni.pmf.rwa.movies.shared.Gender;
 import rs.ac.ni.pmf.rwa.movies.shared.Genre;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Component
 @RequiredArgsConstructor
@@ -24,6 +19,9 @@ public class DatabaseInitializer implements InitializingBean {
     private final MoviesRepository moviesRepository;
     private final ActorsRepository actorsRepository;
     private final BudgetRepository budgetRepository;
+
+    private final UsersRepository usersRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public static final MovieEntity MOVIE_1 = MovieEntity.builder()
             .name("711 Ocean Drive")
@@ -75,6 +73,19 @@ public class DatabaseInitializer implements InitializingBean {
     @Override
     // @Transactional
     public void afterPropertiesSet() throws Exception {
+        log.info("Adding initial users");
+        final UserEntity admin = UserEntity.builder()
+            .username("admin")
+            .enabled(true)
+            .email("admin@mail.com")
+            .password(passwordEncoder.encode("admin"))
+            .locked(false)
+            .name("The Admin")
+            .roles(Set.of(UserRole.ADMIN, UserRole.USER))
+            .build();
+
+        usersRepository.save(admin);
+
         log.info("Filling database with initial data");
 
 //        actorsRepository.saveAll(actors);
